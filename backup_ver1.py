@@ -7,7 +7,7 @@ import time
 
 #需要备份的列表
 source = 'E:\\apache-tomcat-7.0.73-windows-x64'
-
+#ff
 #需要存放的文件夹
 target_file='E:\\back'
 
