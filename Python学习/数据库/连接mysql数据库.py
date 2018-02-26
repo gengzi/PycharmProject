@@ -21,15 +21,19 @@ def connectionMysql():
         连接mysql服务
     :return:
     """
-    try:
-        db = MySQLdb.connect(host="123.206.30.117",user="root",passwd="111",db="test")
-        cursor = db.cursor()
-        cursor.execute("SELECT VERSION()")
-        data = cursor.fetchone()
-        print("数据库的版本%s",data)
-        db.close()
-    except Exception,e:
-        print(e)
+
+    # 获取数据库连接
+    db = MySQLdb.connect(host="123.206.30.117",user="root",passwd="111",db="test",port=3306,charset="gb2312")
+    # 返回游标对象
+    cursor = db.cursor()
+    # 执行sql语句，返回受影响的行数
+    cursor.execute("SELECT VERSION()")
+    # 执行查询，获取第一个行数据，返回一个元组
+    data = cursor.fetchone()
+    print('version :'+str(data[0]))
+    # 关闭连接
+    db.close()
+
 
 
 
