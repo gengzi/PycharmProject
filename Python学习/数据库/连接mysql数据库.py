@@ -23,7 +23,7 @@ def connectionMysql():
     """
 
     # 获取数据库连接
-    db = MySQLdb.connect(host="123.206.30.117",user="root",passwd="111",db="test",port=3306,charset="gb2312")
+    db = MySQLdb.connect(host="123.206.30.117",user="root",passwd="111",db="test",port=3306,charset="utf8")
     # 返回游标对象
     cursor = db.cursor()
     # 执行sql语句，返回受影响的行数
