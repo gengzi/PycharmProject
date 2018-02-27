@@ -1,0 +1,54 @@
+2018年2月27日14:48:05
+总程序：
+    获取每日下课聊的各大板块的发帖信息，仅获取昨天的发帖数据。
+    将发帖数据的用户id，记录下来。
+    记录今日帖子中的照片和发帖内容
+
+    将其中的字段都总结出来。 存放到mysql 数据库中。
+    其中照片和录音，要记录地址
+
+
+单身狗的日常 ： http://120.55.151.61/V2/Treehole/Message/getMessageByTopicIdV5.action
+              http://120.55.151.61/V2/Treehole/Message/getMessageByTopicIdV5.action
+
+五个常见的板块
+
+26号：
+0:0:0
+1519574400
+23:59:59
+1519660799
+
+测试一下看能否获取到数据
+本省
+timestamp	0
+phoneBrand	Android
+platform	1
+genderType	-1
+topicId	19
+phoneVersion	19
+type	1
+selectType	3
+channel	AppTreasure
+phoneModel	MuMu
+versionNumber	9.3.1
+
+
+全国
+timestamp	0
+phoneBrand	Android
+platform	1
+genderType	-1
+topicId	19
+phoneVersion	19
+type	1
+selectType	0
+channel	AppTreasure
+phoneModel	MuMu
+versionNumber	9.3.1
+
+
+
+1519718178690
+1519717483872
+1519716745856
