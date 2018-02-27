@@ -68,10 +68,51 @@ import sys
 #
 # # foreachFile()
 
-
+import datetime
 
 print   "hello world"
 
 
 
 print int(1519574400181)
+
+localtime = time.localtime(time.time())
+print "本地时间为 :", localtime
+
+print time.strftime("%Y-%m-%d", time.localtime())
+# 获取上一天  2018-02-26
+print (datetime.datetime.now()-datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+
+
+def getYesterday(formatStr):
+    """
+    获取昨天的日期
+    :return: 年-月-日
+    """
+    return (datetime.datetime.now() - datetime.timedelta(days=1)).strftime(formatStr)
+
+print getYesterday("%Y/%m/%d")
+
+
+# 将格式字符串转换为时间戳
+a = "2018-2-27 23:24:57"
+print time.mktime(time.strptime(a,"%Y-%m-%d %H:%M:%S"))
+print str(int(time.mktime(time.strptime(a,"%Y-%m-%d %H:%M:%S"))))
+yesterday = "2018-2-27"
+befor_timestamp = str(yesterday) + " 00:00:00"
+after_timestamp = str(yesterday) + " 23:59:59"
+print str(int(time.mktime(time.strptime(befor_timestamp, "%Y-%m-%d %H:%M:%S"))))
+print str(int(time.mktime(time.strptime(after_timestamp, "%Y-%m-%d %H:%M:%S"))))
+
+
+
+def gettopicIds():
+    """
+    获取需要抓取的栏目的id
+    :return:
+    """
+    return (19,13,38,41,15)
+
+topicIds = gettopicIds()
+for i in topicIds:
+    print(str(i))
