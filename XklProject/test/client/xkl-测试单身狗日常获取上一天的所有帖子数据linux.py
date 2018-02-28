@@ -1,15 +1,7 @@
 # -*- coding:utf-8 -*-
 # Hello world - 西蒙.科泽斯 这是“向编程之神所称颂的传统咒语，愿他帮助并保佑你更好的学习这门语言
-import re
-import random
 import requests
-import uuid
-import json
-from Queue import Queue
-import threading
 import time
-# 使用 lxml 的 etree 库
-from lxml import etree
 import json
 import os
 import jsonpath
@@ -55,7 +47,7 @@ def postStudent(session,beforTimestamp,afterTimestamp,topicId):
     # 目录
     yesterday = getYesterday("%Y-%m-%d")
     # 创建目录
-    path = "H:\\python\\xiakeliao\\" + yesterday + "\\"
+    path = "/home/ubuntu/python_workspace/xiakeliao/tiezidata/" + yesterday + "/"
     insertData(path+timestamp+".txt",formatTime,topicId,timestamp,formatTimeday)
     # 休眠10秒，模拟人工操作
     time.sleep(15)
@@ -80,7 +72,7 @@ def paseJsondata2Timestamp(response):
     #目录
     yesterday = getYesterday("%Y-%m-%d")
     # 创建目录
-    path = "H:\\python\\xiakeliao\\"+yesterday+"\\"
+    path = "/home/ubuntu/python_workspace/xiakeliao/tiezidata/"+yesterday+"/"
     isExists = os.path.exists(path)
     # 判断结果
     if not isExists:

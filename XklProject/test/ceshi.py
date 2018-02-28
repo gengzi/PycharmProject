@@ -116,3 +116,60 @@ def gettopicIds():
 topicIds = gettopicIds()
 for i in topicIds:
     print(str(i))
+
+
+print time.localtime(1519660799)
+value = "1519660799999"
+print value[0:10]
+
+
+def getFormatTimeByTimestamp(formatStr,timestamp):
+    """
+    根据时间戳返回格式化的当前时间
+    :param:timestamp 时间戳
+    :param:formatStr 格式时间
+    :return: 格式好的时间
+    """
+    return time.strftime(formatStr,time.localtime(float(timestamp[0:10])))
+
+
+print getFormatTimeByTimestamp("%Y-%m-%d","1519660799999")
+
+print time.strftime("%Y-%m-%d", time.localtime(time.time()))
+
+# 创建目录
+path = "H:\\python\\xiakeliao\\" + yesterday + "\\"
+isExists = os.path.exists(path)
+# 判断结果
+if not isExists:
+    os.makedirs(path)
+    print path + '创建成功'
+
+
+
+import MySQLdb
+
+def insertData(response,formatTime,topicId,timestamp,formatTimeday):
+    """
+    将数据写入数据库
+    :param response: 响应的json数据
+    :param formatTime: 年月日时分秒
+    :param topicId: 栏目的编号
+    :param timestamp: 时间戳
+    :param formatTimeday: 年月日
+    :return: 是否成功
+    """
+    conn = MySQLdb.connect(host="123.206.30.117",port=3306,user="root",passwd="111",db="xklinfo")
+    cursor =conn.cursor()
+    # 封装参数
+    params = [formatTimeday,response,timestamp,formatTime,topicId]
+    #插入
+    sql ="insert into messagedata(nowtime,datajson,timestamp,stampdate,topicid) values(%s,%s,%s,%s,%s)"
+    count = cursor.execute(sql, params)
+    if count >= 1:
+        print("成功")
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+insertData("json","2018-01-11 22:22:22","11","32423432","2018-11-11")
