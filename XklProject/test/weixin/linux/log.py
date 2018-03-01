@@ -1,6 +1,5 @@
 #!/usr/local/bin/python
 #coding=utf-8
-
 import logging
 import logging.handlers
 import sys
@@ -8,7 +7,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')  #设置系统编码格式
 from wechat_sender import *
 # log 文件日志
-LOGFILE = "H:\\python\\xiakeliao\\xkl.log"
+LOGFILE = "/home/ubuntu/python_workspace/xiakeliao/xkl/xkl.log"
 # 实例化Handler
 handler = logging.handlers.RotatingFileHandler(filename=LOGFILE,maxBytes=1024*1024,backupCount=2)
 # 日志的输出格式
@@ -40,6 +39,7 @@ logger.setLevel(logging.DEBUG)
 # 测试
 # logger.info('first info message')
 # logger.debug('first debug message')
+
 
 
 
