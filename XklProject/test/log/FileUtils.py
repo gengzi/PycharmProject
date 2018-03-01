@@ -1,16 +1,7 @@
 # -*- coding:utf-8 -*-
 
-import time
-import json
-import os
-import jsonpath
-import datetime
-import MySQLdb
-import log
-import logging
-from wechat_sender import Sender
+
 from DateUtils import  *
-from MysqlHelper import *
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
