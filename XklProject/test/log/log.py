@@ -32,7 +32,7 @@ logger.addHandler(handler)
 # 设置在控制台写log
 logger.addHandler(handler_console)
 # 设置在微信端
-logger.addHandler(sender_logger)
+# logger.addHandler(sender_logger)
 # 设置日志级别
 logger.setLevel(logging.DEBUG)
 
