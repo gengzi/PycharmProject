@@ -92,7 +92,7 @@ if __name__ == "__main__":
     yesterday = getYesterday("%Y-%m-%d")
     # 从数据库中读取路径信息
     dirpaths = selectDirPathByMD(yesterday)
-    filepaths = foreachPath2file(dirpath="F:\\python\\xkl\\2018-02-27\\")
+    filepaths = foreachPath2file(dirpath="F:\\python\\xkl\\2018-02-28\\")
     # for filepath in filepaths:
     #     #读取每一个文件
     #     print("打开文件："+filepath[0])
