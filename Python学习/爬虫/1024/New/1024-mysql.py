@@ -77,31 +77,36 @@ def getAllPageNum(path):
 
 def loadUrl(num):
     # 根据num组拼网址
-    for numint in range(1,int(num)+1):
-        logger.info("当前查询第"+str(numint)+"页")
-        urllist = "http://huli11.info/content/index4-"+str(numint)+".html"
-        response = requests.get(urllist, headers=headers)
-        html = response.text
-        # 使用xpath 解析页面
-        formatHtml = etree.HTML(html)
-        doc_a = formatHtml.xpath('//li[@class="i_list list_n1"]/a/@href')
-        doc_title = formatHtml.xpath('//li[@class="i_list list_n1"]/a/@title')
-        for index, a in enumerate(doc_a):
-            try:
-                logger.info("现在访问的视频是" + doc_title[index] + "；网址：http://huli11.info" + str(a))
-                loadPage("http://huli11.info" + str(a), doc_title[index],num)
-                time.sleep(10)
-            except Exception, e:
-                print(e)
-                continue
+    # for numint in range(1,int(num)+1):
+    for numint in range(3, int(num)+1):
+        try:
+            logger.info("当前查询第"+str(numint)+"页")
+            urllist = "http://huli11.info/content/index4-"+str(numint)+".html"
+            response = requests.get(urllist, headers=headers,timeout=15)
+            html = response.text
+            # 使用xpath 解析页面
+            formatHtml = etree.HTML(html)
+            doc_a = formatHtml.xpath('//li[@class="i_list list_n1"]/a/@href')
+            doc_title = formatHtml.xpath('//li[@class="i_list list_n1"]/a/@title')
+            for index, a in enumerate(doc_a):
+                try:
+                    logger.info("现在访问的视频是" + doc_title[index] + "；网址：http://huli11.info" + str(a))
+                    loadPage("http://huli11.info" + str(a), doc_title[index],num)
+                    time.sleep(2)
+                except Exception, e:
+                    print(e)
+                    continue
+        except Exception,e:
+            logger.error(e)
+            continue
 
 
 
 if __name__ == "__main__":
     # 获取全部的页数
-    path = "http://huli11.info/content/index4.html"
-    num = getAllPageNum(path)
-    loadUrl(num)
+    # path = "http://huli11.info/content/index4.html"
+    # num = getAllPageNum(path)
+    loadUrl("1294")
 
 
 
