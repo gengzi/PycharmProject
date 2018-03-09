@@ -79,7 +79,9 @@ def paseJsondata2Timestamp(response):
     #目录
     yesterday = getYesterday("%Y-%m-%d")
     # 创建目录
-    path = "/home/ubuntu/python_workspace/xiakeliao/tiezidata/"+yesterday+"/"
+    # path = "/home/ubuntu/python_workspace/xiakeliao/tiezidata/"+yesterday+"/"
+    path = "H:\\python\\xiakeliao\\"+yesterday+"\\"
+
     isExists = os.path.exists(path)
     # 判断结果
     if not isExists:

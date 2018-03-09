@@ -8,7 +8,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')  #设置系统编码格式
 from wechat_sender import *
 # log 文件日志
-LOGFILE = "F:\\python\\xiakeliao\\xkl.log"
+LOGFILE = "H:\\python\\xiakeliao\\xkl.log"
 # 实例化Handler
 handler = logging.handlers.RotatingFileHandler(filename=LOGFILE,maxBytes=1024*1024,backupCount=2)
 # 日志的输出格式
