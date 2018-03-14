@@ -10,7 +10,12 @@ import ConfigParser
 
 # 读取配置文件
 cf = ConfigParser.ConfigParser()
-cf.read("Bmob.conf")
-opts = cf.options("dbaname")
+cf.read("./Bmob.conf")
+opts = cf.options("db")
+print opts
+
+db_host = cf.get("db", "dbaname")
+print db_host
+
 
 
