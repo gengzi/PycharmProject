@@ -34,8 +34,8 @@ def selectVideoUrl(params):
     :param params: 参数list
     :return:
     """
-    sql = "select videoname,videoaddress,vid  from huli11  limit 43,1000"
-    return mysql.get_all(sql=sql,params=[])
+    sql = "select videoname,videoaddress,vid  from huli11 where isdowlond is null  limit %s,%s"
+    return mysql.get_all(sql=sql,params=params)
 
 def updateVideo(isdowlond,videofileaddress,videodownloadtime,vid):
     """
@@ -65,9 +65,9 @@ def getNewFormatTime(formatStr):
 
 if __name__ == "__main__":
     #根据mysql 查询视频所在的网址
-    startitem = 43
-    enditem = 1000
-    params = [0,200]
+    startitem = 0
+    enditem = 999
+    params = (startitem,enditem)
     # 先爬取300 条
     videolist = selectVideoUrl(params)
     print videolist

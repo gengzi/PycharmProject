@@ -9,6 +9,7 @@ import ConfigParser
 import requests
 import jsonpath
 import json
+from BmobException import *
 
 
 
@@ -19,10 +20,9 @@ applicationID = cf.get("app", "applicationID")
 restapikey = cf.get("app", "restapikey")
 inserturl = cf.get("insert", "inserturl")
 
-headers = {
+Insertheaders = {
     "X-Bmob-Application-Id":applicationID,
     "X-Bmob-REST-API-Key":restapikey,
-    "User-Agent": 'okhttp/3.6.0',
     "Content-Type":"application/json",
 }
 
@@ -55,18 +55,38 @@ class SqlHelper():
 
     def insert(self,tablename,datajson,inserturl=inserturl):
         """
-          插入数据
-        :return:
+        插入数据
+        :param tablename: 数据表名称
+        :param datajson: 插入的数据，字典格式
+        :param inserturl: 插入的数据的url
+        :return: success 成功， error 出现错误
         """
         try:
             url = inserturl+str(tablename)
-            response = requests.post(url=url,headers=headers,data=datajson)
-            if response == "201":
+            response = requests.post(url=url,headers=Insertheaders,data=json.dumps(datajson))
+            #如果返回的是 201 就是插入成功
+            if response.status_code == 201:
+                print response
                 Location  = response.headers.get("Location")
                 print(Location)
                 content = response.text
-                print content
-            pass
-        except Exception,e:
+                return "success"
+                # 如果返回的是 404 就会有错误信息
+            elif response.status_code == 404:
+                errorcontent = response.text
+                raise BmobException("404错误："+errorcontent)
+            else:
+                errorcontent = response.text
+                raise BmobException("其他错误：" + errorcontent)
+        except BmobException,e:
             print(e)
+            return "error"
+
+
+
+
+if __name__ == "__main__":
+    sql = SqlHelper()
+    datajosn = {"studentId":"4"}
+    print sql.insert(tablename="studentfile",datajson=datajosn)
 
